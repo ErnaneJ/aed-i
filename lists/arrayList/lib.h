@@ -41,7 +41,7 @@ void insertElementAtEnd(struct ArrayList* list, int value) {
 }
 
 void insertElementInPosition(struct ArrayList* list, int value, int position) {
-  if(position >= 0 && position < list -> length){ // DÚVIDA: no material está <=, pq?
+  if(position >= 0 && position < list -> length){ // DUVIDA: no material está <=, pq?
     if(list -> length == list -> capacity){
       doubleCapacity(list);
     }
@@ -65,7 +65,7 @@ void removeElementAtEnd(struct ArrayList* list) {
   list -> length--;
 }
 
-void removeElementInposition(struct ArrayList* list, int position) { // DÚVIDA: Essa implementação está correta. Mas, é eficiente? Como a do material?
+void removeElementInposition(struct ArrayList* list, int position) { // DUVIDA: Essa implementação está correta. Mas, é eficiente? Como a do material?
   if(position >= 0 && position < list -> length){
     for(int i = position; i < list -> length - 1; i++){
       list -> vector[i] = list -> vector[i + 1];

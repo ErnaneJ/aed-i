@@ -60,7 +60,7 @@ void insertElementInPosition(struct Linkedlist* list, int value, int position){
   if(position == 0){
     insertElementAtStart(list, value);
 
-  // faz sentido proteger assim? Se eu colocar na posicao 1000 e a lista só tiver 3 elementos, adiciono no 4 ou lanço exceção?
+  // DUVIDA: faz sentido proteger assim? Se eu colocar na posicao 1000 e a lista só tiver 3 elementos, adiciono no 4 ou lanço exceção?
   }else if(position >= list -> size){ 
     insertElementAtEnd(list, value);
   }else{
@@ -79,7 +79,7 @@ void insertElementInPosition(struct Linkedlist* list, int value, int position){
 }
 
 int getElementInPosition(struct Linkedlist* list, int position){
-  if(position < 0 || position >= list -> size){ // faz sentido essa proteção para esse escopo?
+  if(position < 0 || position >= list -> size){ // DUVIDA: faz sentido essa proteção para esse escopo?
     printf("GetElementInPosition Error: invalid position.\n");
     return -1;
   }
@@ -93,7 +93,7 @@ int getElementInPosition(struct Linkedlist* list, int position){
 }
 
 void removeElementInPosition(struct Linkedlist* list, int position){
-  if(position < 0 || position >= list -> size){ // faz sentido essa proteção para esse escopo?
+  if(position < 0 || position >= list -> size){ // DUVIDA: faz sentido essa proteção para esse escopo?
     printf("RemoveElementInPosition Error: invalid position.\n");
   }
 

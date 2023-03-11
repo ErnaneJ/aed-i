@@ -42,7 +42,7 @@ void doubleCapacity(struct ArrayList* list) {
     new_list[i] = list -> vector[i];
   }
 
-  // DÚVIDA: a instrução abaixo atualiza a capacidade da lista, 
+  // DUVIDA: a instrução abaixo atualiza a capacidade da lista, 
   // no material isso não é feito. Pq?
   list -> capacity = new_capacity;
 
