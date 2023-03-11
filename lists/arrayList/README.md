@@ -29,7 +29,7 @@
 
 ## O método DoubleCapacity
 
-Uma seguna, e possível, implementação mais manual do método de duplicidade de capacidade seria o modelo abaixo. Nele não precisamos do método `realoc`.
+Uma seguna, e possível, implementação mais manual do método para duplicar a capacidade da lista seria o modelo abaixo. Nele não precisamos do método `realoc` como utilizado [aqui](https://github.com/ErnaneJ/ED-I/blob/f04c0703847442b11a6eebf528f9c7f163adef3d/lists/arrayList/lib.h#L30).
 
 ```c
 void doubleCapacity(struct ArrayList* list) {
@@ -49,7 +49,7 @@ void doubleCapacity(struct ArrayList* list) {
 }
 ```
 
-## Execução de testes: main.c
+## Execução: main.c
 
 - Para executar utilize:
 
