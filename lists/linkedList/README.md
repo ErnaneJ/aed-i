@@ -1,4 +1,4 @@
-# ArrayList
+# LinkedList
 
 > LinkedLists (ou listas ligadas, em português) são listas implementadas com nós, e cada nó possui um espaço de memória para armazenar o elemento e outro espaço de memória para armazenar o ponteiro (endereço de memória) para o nó seguinte.
 
