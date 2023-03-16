@@ -13,21 +13,11 @@ Exercícios e anotações referentes ao estudo das notas de aula apresentadas na
   ./scripts/run.sh
   ```
 
+  *_Obs.: Utilize a flag `-v` (verbose) para infomações detalhadas de execução_
+
 - Para executar todos os testes em determinados diretórios:
   ```bash
-  go test ./tests/... ./unit-tests/... ./my-packages/...
-  ```
-
-- Para executar todos os testes com o caminho de importação prefixado com foo/:
-
-  ```bash
-  go test foo/...
-  ```
-
-- Para executar todos os caminhos de importação de testes prefixados com foo:
-
-  ```bash
-  go test foo...
+  go test ./path/...
   ```
 - Para executar todos os testes em seu $GOPATH:
 
