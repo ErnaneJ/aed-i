@@ -5,16 +5,6 @@ import (
 	"fmt"
 )
 
-type LinkedList struct {
-	head   *Node
-	length int
-}
-
-type Node struct {
-	value int
-	next  *Node
-}
-
 func (linkedList *LinkedList) Init() {
 	linkedList.head = nil
 	linkedList.length = 0
@@ -22,14 +12,14 @@ func (linkedList *LinkedList) Init() {
 
 func (linkedList *LinkedList) Add(value int) {
 	if linkedList.head == nil {
-		linkedList.head = &Node{value: value, next: nil}
+		linkedList.head = &NodeLinkedList{value: value, next: nil}
 	} else {
-		aux := linkedList.head
-		for i := 0; aux.next != nil; i++ {
-			aux = aux.next
+		lastItem := linkedList.head
+		for i := 0; lastItem.next != nil; i++ {
+			lastItem = lastItem.next
 		}
 
-		aux.next = &Node{value: value, next: nil}
+		lastItem.next = &NodeLinkedList{value: value, next: nil}
 	}
 
 	linkedList.length++
@@ -37,14 +27,14 @@ func (linkedList *LinkedList) Add(value int) {
 
 func (linkedList *LinkedList) insertElementAtStart(value int) {
 	if linkedList.head == nil {
-		linkedList.head = &Node{value: value, next: nil}
+		linkedList.head = &NodeLinkedList{value: value, next: nil}
 	} else {
-		newNode := &Node{value: value, next: linkedList.head}
+		newNode := &NodeLinkedList{value: value, next: linkedList.head}
 		linkedList.head = newNode
 	}
 }
 
-func (linkedList *LinkedList) AddOnIndex(index int, value int) error {
+func (linkedList *LinkedList) AddOnIndex(value int, index int) error {
 	if index < 0 || index > linkedList.length {
 		return errors.New("the index is invalid")
 	}
@@ -57,7 +47,7 @@ func (linkedList *LinkedList) AddOnIndex(index int, value int) error {
 			element = element.next
 		}
 
-		newNode := &Node{value: value, next: element.next}
+		newNode := &NodeLinkedList{value: value, next: element.next}
 		element.next = newNode
 	}
 
@@ -80,21 +70,27 @@ func (linkedList *LinkedList) RemoveOnIndex(index int) error {
 		return errors.New("the index is invalid")
 	}
 
-	element := linkedList.head
-	for i := 0; i < index-1; i++ {
-		element = element.next
+	if index == 0 {
+		linkedList.head = linkedList.head.next
+	} else {
+		itemToDelete := linkedList.head
+		previousItem := linkedList.head
+
+		for i := 0; i < index; i++ {
+			previousItem = itemToDelete
+			itemToDelete = itemToDelete.next
+		}
+
+		previousItem.next = itemToDelete.next
 	}
 
-	aux := element.next
-	element.next = aux.next
 	linkedList.length--
-
 	return nil
 }
 
 func (linkedList *LinkedList) Get(index int) (int, error) {
 	if index < 0 || index > linkedList.length {
-		return -1, errors.New("the index is invalid")
+		return index, errors.New("the index is invalid")
 	}
 
 	element := linkedList.head
@@ -105,7 +101,7 @@ func (linkedList *LinkedList) Get(index int) (int, error) {
 	return element.value, nil
 }
 
-func (linkedList *LinkedList) Set(index int, value int) error {
+func (linkedList *LinkedList) Set(value int, index int) error {
 	if index < 0 || index > linkedList.length {
 		return errors.New("the index is invalid")
 	}
@@ -123,8 +119,9 @@ func (linkedList *LinkedList) Size() int {
 	return linkedList.length
 }
 
-func (linkedList *LinkedList) ShowData() {
+func (linkedList *LinkedList) ShowList() {
 	element := linkedList.head
+	fmt.Printf(".:: Element: %T\n", linkedList)
 	fmt.Println(".:: Length:", linkedList.length)
 	fmt.Print(".:: Values: [")
 	for i := 0; i < linkedList.length; i++ {

@@ -1,13 +1,34 @@
-package main
+package list
+
+type DoublyLinkedList struct {
+	head   *NodeDoublyLinkedList
+	tail   *NodeDoublyLinkedList
+	length int
+}
+
+type NodeDoublyLinkedList struct {
+	value int
+	next  *NodeDoublyLinkedList
+	prev  *NodeDoublyLinkedList
+}
+
+type LinkedList struct {
+	head   *NodeLinkedList
+	length int
+}
+
+type NodeLinkedList struct {
+	value int
+	next  *NodeLinkedList
+}
 
 type IList interface {
-	Init()
 	Add(value int)
-	AddOnIndex(index int, value int)
-	Remove()
-	RemoveOnIndex(index int)
-	Get(index int)
-	Set(index int, value int)
-	Size()
-	ShowData()
+	AddOnIndex(value int, index int) error
+	Remove() error
+	RemoveOnIndex(index int) error
+	Get(index int) (int, error)
+	Set(value int, index int) error
+	Size() int
+	ShowList()
 }
