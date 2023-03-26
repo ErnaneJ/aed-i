@@ -3,7 +3,7 @@ name: Go run Tests
 on: [push]
 
 jobs:
-  Go Test:
+  GoTest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
