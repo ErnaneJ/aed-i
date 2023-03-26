@@ -2,7 +2,9 @@
 
 Exercícios e anotações referentes ao estudo das notas de aula apresentadas na disciplina de Algoritmos e Estruturas de Dados I, ofertada pelo Departamento de Engenharia de Computação e Automação (UFRN).
 
-## 🐛 Testes
+![example workflow](https://github.com/ernanej/ed-i/actions/workflows/goTests.yml/badge.svg)
+
+## ⚒️ Testes
 
 - Para executar todos os testes no diretório atual e todos os seus subdiretórios:
   ```bash
