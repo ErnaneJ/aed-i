@@ -5,46 +5,24 @@ import (
 )
 
 type LinkedListStack struct {
-	values []int
+	head   *Node
 	length int
 }
 
-func (linkedListStack *LinkedListStack) Init(size int) error {
-	if linkedListStack.length > 0 {
-		return errors.New("array stack already initialized")
-	}
-
-	if size > 0 {
-		linkedListStack.values = make([]int, size)
-		linkedListStack.length = 0
-	} else {
-		return errors.New("can't initialize LinkedListStack with size <= 0")
-	}
-
-	return nil
+type Node struct {
+	value int
+	next  *Node
 }
 
-func (linkedListStack *LinkedListStack) double() {
-	doubledValues := make([]int, len(linkedListStack.values)*2)
-	for i := 0; i < len(linkedListStack.values); i++ {
-		doubledValues[i] = linkedListStack.values[i]
-	}
-
-	linkedListStack.values = doubledValues
-}
-
-func (linkedListStack LinkedListStack) Push(value int) {
-	if linkedListStack.length == len(linkedListStack.values) {
-		linkedListStack.double()
-	}
-
-	linkedListStack.values[linkedListStack.length] = value
+func (linkedListStack *LinkedListStack) Push(value int) {
+	linkedListStack.head = &Node{value: value, next: linkedListStack.head}
 	linkedListStack.length++
 }
 
 func (linkedListStack *LinkedListStack) Pop() (int, error) {
 	if linkedListStack.length > 0 {
-		item := linkedListStack.values[linkedListStack.length]
+		item := linkedListStack.head.value
+		linkedListStack.head = linkedListStack.head.next
 		linkedListStack.length--
 
 		return item, nil
@@ -55,7 +33,7 @@ func (linkedListStack *LinkedListStack) Pop() (int, error) {
 
 func (linkedListStack *LinkedListStack) Peek() (int, error) {
 	if linkedListStack.length > 0 {
-		return linkedListStack.values[linkedListStack.length], nil
+		return linkedListStack.head.value, nil
 	} else {
 		return -1, errors.New("linkedListStack is empity")
 	}

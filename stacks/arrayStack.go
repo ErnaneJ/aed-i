@@ -33,7 +33,7 @@ func (arrayStack *ArrayStack) double() {
 	arrayStack.values = doubledValues
 }
 
-func (arrayStack ArrayStack) Push(value int) {
+func (arrayStack *ArrayStack) Push(value int) {
 	if arrayStack.length == len(arrayStack.values) {
 		arrayStack.double()
 	}
@@ -44,7 +44,7 @@ func (arrayStack ArrayStack) Push(value int) {
 
 func (arrayStack *ArrayStack) Pop() (int, error) {
 	if arrayStack.length > 0 {
-		item := arrayStack.values[arrayStack.length]
+		item := arrayStack.values[arrayStack.length-1]
 		arrayStack.length--
 
 		return item, nil
@@ -55,7 +55,7 @@ func (arrayStack *ArrayStack) Pop() (int, error) {
 
 func (arrayStack *ArrayStack) Peek() (int, error) {
 	if arrayStack.length > 0 {
-		return arrayStack.values[arrayStack.length], nil
+		return arrayStack.values[arrayStack.length-1], nil
 	} else {
 		return -1, errors.New("arrayStack is empity")
 	}

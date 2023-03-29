@@ -14,18 +14,14 @@ func createStacks(size int) {
 }
 
 func deleteStacks() {
-	//in this case, createStacks alone solves the problem
-	//however, I let the template here to be used in other tests
 	stacks[0] = nil
 	stacks[1] = nil
 }
 
 func setupTest() func() {
-	//before each test
 	size = 10
 	createStacks(size)
 
-	//after each test
 	return func() {
 		deleteStacks()
 	}
