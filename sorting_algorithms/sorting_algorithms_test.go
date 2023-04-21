@@ -1,45 +1,42 @@
 package main
 
 import (
+	"reflect"
+	"runtime"
 	"testing"
 )
 
-func TestBubbleSort(t *testing.T) {
-	list := []int{9, 5, 1, 4, 0, 7, 8, 6, 3, 2}
+var expectedResult = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+var sortingFunctions = []func([]int){
+	BubbleSort,
+	SelectionSort,
+	InsertionSort,
+	MergeSort,
+}
 
-	BubbleSort(list)
+func TestAllSortingFunctions(t *testing.T) {
+	for _, sortingFunction := range sortingFunctions {
+		list := []int{9, 5, 1, 4, 0, 7, 8, 6, 3, 2}
 
-	if list[0] != 0 || list[len(list)-1] != 9 {
-		t.Errorf("BubbleSort: returned %d, but we expected it to be %d", list, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+		sortingFunction(list)
+		currentFunctionName := runtime.FuncForPC(reflect.ValueOf(sortingFunction).Pointer()).Name()
+
+		for i := 0; i < len(list); i++ {
+			if list[i] != i {
+				t.Errorf("%s: returned %d, but we expected it to be %d", currentFunctionName, list, expectedResult)
+			}
+		}
 	}
 }
 
-func TestSelectionSort(t *testing.T) {
+func TestOnlyQuickSort(t *testing.T) {
 	list := []int{9, 5, 1, 4, 0, 7, 8, 6, 3, 2}
 
-	SelectionSort(list)
+	QuickSort(list) // This function's assignment is QuickSort(list []int, args ...int) so in this case args is [].
 
-	if list[0] != 0 || list[len(list)-1] != 9 {
-		t.Errorf("SelectionSort: returned %d, but we expected it to be %d", list, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
-	}
-}
-
-func TestInsertionSort(t *testing.T) {
-	list := []int{9, 5, 1, 4, 0, 7, 8, 6, 3, 2}
-
-	InsertionSort(list)
-
-	if list[0] != 0 || list[len(list)-1] != 9 {
-		t.Errorf("SelectionSort: returned %d, but we expected it to be %d", list, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
-	}
-}
-
-func TestMergeSort(t *testing.T) {
-	list := []int{0, 2, 1, 3, 4, 5, 6, 7, 8, 9}
-
-	MergeSort(list)
-
-	if list[0] != 0 || list[len(list)-1] != 9 {
-		t.Errorf("MergeSort: returned %d, but we expected it to be %d", list, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+	for i := 0; i < len(list); i++ {
+		if list[i] != i {
+			t.Errorf("QuickSort: returned %d, but we expected it to be %d", list, expectedResult)
+		}
 	}
 }
