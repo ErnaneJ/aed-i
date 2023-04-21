@@ -1,24 +1,22 @@
-# Estruturas de Dados e Algoritmos (EDI - DCA0208)
+# Data Structures and Algorithms (DCA0208)
 
-Exercícios e anotações referentes ao estudo das notas de aula apresentadas na disciplina de Algoritmos e Estruturas de Dados I, ofertada pelo Departamento de Engenharia de Computação e Automação (UFRN).
+Exercises and notes referring to the study of the lecture notes presented in the discipline of Algorithms and Data Structures I, offered by the Department of Computer Engineering and Automation (UFRN).
 
 ![example workflow](https://github.com/ernanej/ed-i/actions/workflows/goTests.yml/badge.svg)
 
-## ⚒️ Testes
+## ⚒️ Tests
 
-- Para executar todos os testes no diretório atual e todos os seus subdiretórios:
+- To run all tests in the current directory and all its subdirectories:
   ```bash
   go test -v ./...
   ```
+  *_Note: Use the `-v` (verbose) flag for detailed execution information_
 
-  *_Obs.: Utilize a flag `-v` (verbose) para infomações detalhadas de execução_
-
-- Para executar todos os testes em determinados diretórios:
+- To run all tests in certain directories:
   ```bash
   go test ./path/...
   ```
-- Para executar todos os testes em seu $GOPATH:
-
+- To run all tests on your $GOPATH:
   ```bash
   go test ...
   ```
