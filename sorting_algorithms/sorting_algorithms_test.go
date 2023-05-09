@@ -12,6 +12,7 @@ var sortingFunctions = []func([]int){
 	SelectionSort,
 	InsertionSort,
 	MergeSort,
+	CountingSort,
 }
 
 func TestAllSortingFunctions(t *testing.T) {
