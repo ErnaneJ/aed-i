@@ -1,5 +1,11 @@
 package main
 
+/*
+* Best case: Ω(n)
+* Worst case: O(n²)
+* Goal: move the highest element to the right
+**/
+
 func BubbleSort(list []int) {
 	size := len(list)
 	for i := 0; i < size-1; i++ {

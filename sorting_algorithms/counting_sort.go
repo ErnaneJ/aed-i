@@ -1,5 +1,11 @@
 package main
 
+/*
+* Best case: Ω(n)
+* Worst case: O(n+k), k >> n
+* Goal: sorting integer arrays by counting
+**/
+
 func CountingSort(list []int) {
 	smaller := list[0]
 	bigger := list[0]

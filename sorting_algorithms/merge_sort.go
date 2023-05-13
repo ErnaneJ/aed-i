@@ -1,5 +1,12 @@
 package main
 
+/*
+* Best case: Ω(nlog(n))
+* Worst case: O(nlog(n))
+* Goal: split array into halves with recursion calls. Then,
+* given two halves that are sorted, merge them into a sorted array
+**/
+
 func MergeSort(list []int) {
 	if len(list) <= 1 {
 		return
