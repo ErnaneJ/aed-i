@@ -123,8 +123,8 @@
       > **R:** Como nos algoritmos anteriores, teremos dois laços. Um para controlar a iteração atual varrendo o vetor da esquerda para a direita e um outro laço mais interno que varre o vetor de forma contraria: da direita para a esqueda. Mas, essa varredura interna irá desde o final do vetor até a iteração atual mais externa (i). Ou seja, para o vetor atual no caso de i ser igual a 2 teramos o vetor interno j varrendo o vetor de n-1 até i-1. Essa varredura interna verifica se o elemento atual é menor que o elemento anterior, se for, realiza a troca. Sendo assim, essa abordagem se assemelha com o buble sorte porém, no lugar de fluturamos os elementos maiores para o fim, nós inserimos os elementos menores no inicio do array. Ou, flutuamos os menores para o início. Abaixo está uma representação de como é realizada essas operações para ordenar o array de modelo aleatório.
       
       ```go
-        list := []int{3, 6, 2, 5, 4, 3, 7, 1, 10⁹}
-	      InsertionSort(list)
+      list := []int{3, 6, 2, 5, 4, 3, 7, 1, 10⁹}
+      InsertionSort(list)
 
       //.:: Iteração:  1
       //  .:: [3 6 2 5 4 3 1 7 10⁹] 1 <-> 7
@@ -160,46 +160,48 @@
 
       > **R:** O algoritmo de ordenação MergeSorte segue a premissa de subdividir o array desejado à ordenação em sua menor parte possivel (n arrays unitários) e, somente assim, realizar a mescla deles. Pois, dessa forma, é possível considerar que um array unitário sempre estará ordenado. Sendo assim, para o exemplo, o que teremos é a subdivisão  do array de exemplo em partes iguais recursivamente. Por exemplo:
 
+      ```yml
       início: [7, 6, 5, 4, 3, 3, 2, 1]
               [7, 6, 5, 4][3, 3, 2, 1]
               [7, 6][5, 4][3, 3][2, 1]
               [7][6][5][4][3][3][2][1]
+      ```
 
       Porém, é necessário ressaltar que esse processo não acontece de forma direta como na exemplificação acima. Ele é totalmente executado pela esquerda. Como assim? Bom, abaixo está uma representação de como é realizada essas operações para ordenar o array com o MergeSort.
 
       ```go
-        list := []int{7, 6, 5, 4, 3, 3, 2, 1}
-	      MergeSort(list)
-        
-        // Divisão 0  -> [7 6 5 4 3 3 2 1]
-        // Divisão 1  -> [7 6 5 4]
-        // Divisão 2  -> [7 6]
-        // Divisão 3  -> [7]
-        // Divisão 4  -> [6]
+      list := []int{7, 6, 5, 4, 3, 3, 2, 1}
+      MergeSort(list)
+      
+      // Divisão 0  -> [7 6 5 4 3 3 2 1]
+      // Divisão 1  -> [7 6 5 4]
+      // Divisão 2  -> [7 6]
+      // Divisão 3  -> [7]
+      // Divisão 4  -> [6]
 
-        // Merge 0    -> [6] + [7] => [6 7]
+      // Merge 0    -> [6] + [7] => [6 7]
 
-        // Divisão 5  -> [5 4]
-        // Divisão 6  -> [5]
-        // Divisão 7  -> [4]
+      // Divisão 5  -> [5 4]
+      // Divisão 6  -> [5]
+      // Divisão 7  -> [4]
 
-        // Merge 1    -> [4] + [5] => [4 5]
-        // Merge 2    -> [4 5] + [6 7] => [4 5 6 7]
+      // Merge 1    -> [4] + [5] => [4 5]
+      // Merge 2    -> [4 5] + [6 7] => [4 5 6 7]
 
-        // Divisão 8  -> [3 3 2 1]
-        // Divisão 9  -> [3 3]
-        // Divisão 10 -> [3]
-        // Divisão 11 -> [3]
+      // Divisão 8  -> [3 3 2 1]
+      // Divisão 9  -> [3 3]
+      // Divisão 10 -> [3]
+      // Divisão 11 -> [3]
 
-        // Merge 3    -> [3] + [3] => [3 3]
+      // Merge 3    -> [3] + [3] => [3 3]
 
-        // Divisão 12 -> [2 1]
-        // Divisão 13 -> [2]
-        // Divisão 14 -> [1]
-        
-        // Merge 4    -> [1] + [2] => [1 2]
-        // Merge 5    -> [1 2] + [3 3] => [1 2 3 3]
-        // Merge 6    -> [1 2 3 3] + [4 5 6 7] => [1 2 3 3 4 5 6 7]
+      // Divisão 12 -> [2 1]
+      // Divisão 13 -> [2]
+      // Divisão 14 -> [1]
+      
+      // Merge 4    -> [1] + [2] => [1 2]
+      // Merge 5    -> [1 2] + [3 3] => [1 2 3 3]
+      // Merge 6    -> [1 2 3 3] + [4 5 6 7] => [1 2 3 3 4 5 6 7]
       ```
 
     - **e.** `QuickSort` (**sem** randomização de pivô)
@@ -208,6 +210,10 @@
       > **R:** ...
 
       ```go
+      rand.Seed(time.Now().UnixNano())
+      list := []int{1, 2, 3, 3, 4, 5, 6, 7}
+      QuickSort(false, list) // false para pivo padrão (ultimo elemento da lista)
+
       // .:: Pivot: 7 - Lista: [1 2 3 3 4 5 6 7]
       //     .::largestIterator 0 - smallersIterator: 0
       //     .::Comparação 1 < 7
@@ -282,6 +288,10 @@
       > **R:** ...
 
       ```go
+      rand.Seed(time.Now().UnixNano())
+      
+      list := []int{1, 2, 3, 3, 4, 5, 6, 7}
+      QuickSort(false, list) // false para pivo aleatório
       // ...
       ```
 
@@ -296,17 +306,17 @@
 
 4. **A seguir são apresentados 5 fatos sobre algoritmos de ordenação. Planeje, execute experimentos, e apresente resultados que evidenciem cada afirmação.**
 
-    - **A.** Para vetores de tamanho pequeno, a performance da maioria dos algoritmos de ordenação não vai \ influenciar, independente da disposição dos elementos.
+    - **A.** Para vetores de tamanho pequeno, a performance da maioria dos algoritmos de ordenação não vai influenciar, independente da disposição dos elementos.
       - **a.** Sugestão: um algoritmo `O(n²)`, um algoritmo `O(nlogn)`, e como exceção um algoritmo `O(k+n)`
 
     - **B.** Vetor de tamanho grande, a performance do algoritmo influencia de forma significativa. Além disso, dependendo da disposição (e valores) dos elementos no vetor, podemos experimentar performances bem diferentes (melhor e pior caso).
       - **a.** Sugestão: um algoritmo `O(n²)`, um algoritmo `O(nlogn)`, um algoritmo `O(k+n)`
 
-    - **C.** MergeSort tem sempre um desempenho muito bom, independente da disposição dos elementos no vetor.
+    - **C.** `MergeSort` tem sempre um desempenho muito bom, independente da disposição dos elementos no vetor.
     
-    - **D.** O pior caso do Quicksort é com o vetor ordenado de forma crescente/decrescente. O Quicksort com randomização de pivô resolve esse mau desempenho.
+    - **D.** O pior caso do `Quicksort` é com o vetor ordenado de forma crescente/decrescente. O `Quicksort` com randomização de pivô resolve esse mau desempenho.
     
-    - **E.** Explique quando o CountingSort tem bom desempenho e quando tem mau desempenho mostrando os resultados através dos experimentos.
+    - **E.** Explique quando o `CountingSort` tem bom desempenho e quando tem mau desempenho mostrando os resultados através dos experimentos.
 
 5. **Perguntas com respostas rápidas:**
     - **a)** Por que `SelectionSort` não consegue melhorar o desempenho para cenários nos quais o vetor já está ordenado?

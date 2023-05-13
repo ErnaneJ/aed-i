@@ -58,8 +58,8 @@ func TestOnlyQuickSort(t *testing.T) {
 	}
 }
 
-func TestExamples(t *testing.T) {
-	rand.Seed(time.Now().UnixNano())
-	list := []int{1, 2, 3, 3, 4, 5, 6, 7}
-	QuickSort(true, list)
-}
+// func TestExamples(t *testing.T) {
+// 	rand.Seed(time.Now().UnixNano())
+// 	list := []int{1, 2, 3, 3, 4, 5, 6, 7}
+// 	QuickSort(true, list)
+// }
