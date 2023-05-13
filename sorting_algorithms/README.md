@@ -82,7 +82,7 @@
 
       ```go
       list := []int{3, 6, 2, 5, 4, 3, 7, 1, 10⁹}
-	    SelectionSort(list)
+	    BubbleSort(list)
 
       // .:: Iteração:  1
       //   .:: [3 2 6 5 4 3 7 1 10⁹] 2 <-> 6
