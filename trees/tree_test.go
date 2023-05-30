@@ -1,7 +1,6 @@
 package tree
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -11,7 +10,7 @@ func TestInsert(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for index, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 		size := bst.Size()
 		if size != index+2 {
 			t.Errorf("%T size is %d, but we expected it to be %d", bst, size, index+2)
@@ -25,7 +24,7 @@ func TestHeight(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 	}
 
 	if bst.Height() != 2 {
@@ -39,7 +38,7 @@ func TestSearch(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 
 		if !bst.Search(value) {
 			t.Errorf("%T does not have the value %d in its elements.", bst, value)
@@ -57,7 +56,7 @@ func TestRemove(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 	}
 
 	for index := len(values) - 2; index >= 0; index-- {
@@ -75,7 +74,7 @@ func TestMax(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 	}
 
 	if bst.Max() != 8 {
@@ -89,7 +88,7 @@ func TestMin(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 	}
 
 	if bst.Min() != 2 {
@@ -103,7 +102,7 @@ func TestIsBST(t *testing.T) {
 	values := []int{3, 7, 2, 4, 6, 8}
 
 	for _, value := range values {
-		bst.Insert(&bst, value)
+		bst.Insert(value)
 	}
 
 	if !bst.IsBST() {
@@ -119,7 +118,6 @@ func TestIsBST(t *testing.T) {
 
 func TestSortedArrayToBST(t *testing.T) {
 	array := []int{50, 60, 80, 20, 30, 40, 70}
-	fmt.Println(array)
 
 	bst := sortedArrayToBST(array)
 
@@ -136,7 +134,7 @@ func TestSortedArrayToBST(t *testing.T) {
 // 	fmt.Println(values)
 
 // 	for _, value := range values {
-// 		bst.Insert(&bst, value)
+// 		bst.Insert(value)
 // 	}
 
 // 	bst.Print(0)

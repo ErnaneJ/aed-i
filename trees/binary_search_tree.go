@@ -5,14 +5,18 @@ import (
 	"sort"
 )
 
-func (root *BinarySearchTree) Insert(parent **BinarySearchTree, value int) {
-	if root == nil {
-		*parent = &BinarySearchTree{value, nil, nil}
-	} else {
-		if value < root.value {
-			root.left.Insert(&root.left, value)
-		} else { // value >= root.value
-			root.right.Insert(&root.right, value)
+func (root *BinarySearchTree) Insert(value int) {
+	if value <= root.value {
+		if root.left == nil {
+			root.left = &BinarySearchTree{value: value}
+		} else {
+			root.left.Insert(value)
+		}
+	} else { // value >= root.value
+		if root.right == nil {
+			root.right = &BinarySearchTree{value: value}
+		} else {
+			root.right.Insert(value)
 		}
 	}
 }
