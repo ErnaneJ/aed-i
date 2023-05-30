@@ -12,7 +12,7 @@ func (root *BinarySearchTree) Insert(value int) {
 		} else {
 			root.left.Insert(value)
 		}
-	} else { // value >= root.value
+	} else {
 		if root.right == nil {
 			root.right = &BinarySearchTree{value: value}
 		} else {
