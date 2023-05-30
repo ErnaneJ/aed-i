@@ -1,6 +1,7 @@
 package tree
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -11,9 +12,9 @@ func TestInsert(t *testing.T) {
 
 	for index, value := range values {
 		bst.Insert(&bst, value)
-		length := bst.Length()
-		if length != index+2 {
-			t.Errorf("%T length is %d, but we expected it to be %d", bst, length, index+2)
+		size := bst.Size()
+		if size != index+2 {
+			t.Errorf("%T size is %d, but we expected it to be %d", bst, size, index+2)
 		}
 	}
 }
@@ -61,9 +62,9 @@ func TestRemove(t *testing.T) {
 
 	for index := len(values) - 2; index >= 0; index-- {
 		bst.Remove(values[index])
-		length := bst.Length()
-		if length != index+2 {
-			t.Errorf("%T length is %d, but we expected it to be %d", bst, length, index+2)
+		size := bst.Size()
+		if size != index+2 {
+			t.Errorf("%T size is %d, but we expected it to be %d", bst, size, index+2)
 		}
 	}
 }
@@ -115,3 +116,33 @@ func TestIsBST(t *testing.T) {
 		t.Errorf("%T is not a BST but returned that it is", bst)
 	}
 }
+
+func TestSortedArrayToBST(t *testing.T) {
+	array := []int{50, 60, 80, 20, 30, 40, 70}
+	fmt.Println(array)
+
+	bst := sortedArrayToBST(array)
+
+	if bst.value != 50 {
+		t.Errorf("%T root returned value %d, but expected %d", bst, bst.value, 50)
+	}
+}
+
+// func TestTest(t *testing.T) {
+// 	bst := &BinarySearchTree{5, nil, nil}
+
+// 	values := []int{3, 7, 2, 4, 6, 8}
+
+// 	fmt.Println(values)
+
+// 	for _, value := range values {
+// 		bst.Insert(&bst, value)
+// 	}
+
+// 	bst.Print(0)
+// 	fmt.Println("--------------------")
+// 	bst.Remove(5)
+// 	bst.Remove(7)
+// 	bst.Remove(8)
+// 	bst.Print(0)
+// }

@@ -13,6 +13,6 @@ type ITree interface {
 	Max() int
 	Min() int
 	IsBST() bool
-	Length() int
+	Size() int
 	Print(space int)
 }

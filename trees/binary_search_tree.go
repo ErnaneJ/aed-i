@@ -1,6 +1,9 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func (root *BinarySearchTree) Insert(parent **BinarySearchTree, value int) {
 	if root == nil {
@@ -53,10 +56,10 @@ func (root *BinarySearchTree) Max() int {
 }
 
 func (root *BinarySearchTree) Remove(value int) *BinarySearchTree {
-	if !root.Search(value) {
-		fmt.Print("Value ", value, " not found.\n\n")
-		return root
-	}
+	// if !root.Search(value) {
+	// 	fmt.Print("Value ", value, " not found.\n\n")
+	// 	return root
+	// }
 	if value < root.value {
 		root.left = root.left.Remove(value)
 	} else if value > root.value {
@@ -64,9 +67,9 @@ func (root *BinarySearchTree) Remove(value int) *BinarySearchTree {
 	} else { // BinarySearchTree found
 		if root.left == nil && root.right == nil { // primary case: node without children
 			return nil
-		} else if root.left != nil && root.right == nil { //second case - left: node with 1 child
+		} else if root.left != nil && root.right == nil { // second case - left: node with 1 child
 			return root.left
-		} else if root.left == nil && root.right != nil { //second case - right: node with 1 child
+		} else if root.left == nil && root.right != nil { // second case - right: node with 1 child
 			return root.right
 		} else { // third case: node with 2 children
 			maxNodeInLeft := root.left.Max()
@@ -117,11 +120,11 @@ func (root *BinarySearchTree) IsBST() bool {
 	return true
 }
 
-func (root *BinarySearchTree) Length() int {
+func (root *BinarySearchTree) Size() int {
 	if root == nil {
 		return 0
 	} else {
-		return 1 + root.left.Length() + root.right.Length()
+		return 1 + root.left.Size() + root.right.Size()
 	}
 }
 
@@ -136,4 +139,21 @@ func (root *BinarySearchTree) Print(space int) {
 	root.right.Print(space)
 	fmt.Printf("%*s%d\n", space, "", root.value)
 	root.left.Print(space)
+}
+
+func sortedArrayToBST(elements []int) *BinarySearchTree {
+	sort.Ints(elements)
+
+	if len(elements) == 0 {
+		return nil
+	}
+
+	mid := len(elements) / 2
+
+	root := &BinarySearchTree{value: elements[mid]}
+
+	root.left = sortedArrayToBST(elements[:mid])
+	root.right = sortedArrayToBST(elements[mid+1:])
+
+	return root
 }
